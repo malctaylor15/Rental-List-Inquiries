@@ -1,8 +1,11 @@
 # Rental-List-Inquiries
 Repository for files related to the Kaggle Competition about Home Rent Prices 
 
+## Malcolm R Project 
 
-In the Malcolm R Project, we begin by importing the data and initially looking at the data. 
+There are several files associated with the Malcolm R Project. It is still a work in progress but below is a short description of the files. 
+
+
 In Dataframe_Cleaning1.R- 
 We add a few features for the time and date information as well as change several data types for later analysis. 
 
