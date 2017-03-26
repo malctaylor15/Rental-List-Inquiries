@@ -1,0 +1,48 @@
+---
+title: "maps_rental"
+author: "xuanru shen"
+date: "3/26/2017"
+output: html_document
+---
+```{r,message=FALSE,results='hide'}
+library(dplyr)
+library(leaflet)
+setwd("~/Downloads")
+train.json <- jsonlite::fromJSON("train.json", flatten = TRUE)
+names(train.json)
+
+train.json <- train.json[c("created", "bathrooms", "bedrooms", "price",  "latitude", "longitude", 
+                           "building_id", "manager_id", "features","street_address", "interest_level")]
+train.df <- as.data.frame(bind_cols(train.json))
+
+
+train.df$created <- as.Date(unlist(train.df$created))
+train.df$bathrooms <- as.numeric(unlist(train.df$bathrooms))
+train.df$bedrooms <- as.numeric(unlist(train.df$bedrooms))
+train.df$price <- as.numeric(unlist(train.df$price))
+train.df$longitude <- as.numeric(unlist(train.df$longitude))
+train.df$latitude <- as.numeric(unlist(train.df$latitude))
+train.df$building_id <- as.character(unlist(train.df$building_id))
+train.df$manager_id <- as.character(unlist(train.df$manager_id))
+train.df$interest_level <- as.factor(unlist(train.df$interest_level))
+train.df$interest_level <- factor(train.df$interest_level, levels = c("high", "medium", "low"))
+train.df$s_address<-as.character(unlist(train.df$street_address),delimiter = '\"')
+
+a<-kmeans(train.df$longitude,5)
+a1<-kmeans(train.df$latitude,5)
+a$size;a1$size
+sum(a$cluster==1&a1$cluster==1)
+sub_flag<-which(a$cluster==1&a1$cluster==1)
+sub_train<-train.df[sub_flag,]
+
+```
+
+MAPS
+```{r,echo=FALSE}
+my_map <- leaflet() %>% 
+  addTiles()
+my_map <- my_map %>%
+  addMarkers(lat=sub_train$latitude, lng=sub_train$longitude, 
+             popup=sub_train$s_address)
+my_map
+```
