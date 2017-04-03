@@ -36,7 +36,7 @@ data_df$lat_long <- data_df$longitude * data_df$latitude
 data_df$interest_level <- as.factor(data_df$interest_level)
 
 # Columns to keep 
-quick_cols <- c("bathrooms", "bedrooms", "longitude", "latitude", "lat_long", "price", "interest_level", "hour", "weekday", "yday")  # add Listing ID here later for easy matching 
+quick_cols <- c("bathrooms", "bedrooms", "longitude", "latitude", "lat_long", "price", "interest_level", "hour", "weekday", "yday", "listing_id")  # add Listing ID here later for easy matching 
 
 # Subset the original data set 
 new_df <- data_df[ , quick_cols, drop = FALSE]
