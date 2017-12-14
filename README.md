@@ -1,6 +1,9 @@
 # Rental-List-Inquiries
 Repository for files related to the Kaggle Competition about Home Rent Prices. More information about the competition can be found [here](https://www.kaggle.com/c/two-sigma-connect-rental-listing-inquiries) 
 
+
+My co-worker [Xuanru Shen](https://github.com/ttjxuan) helped by helping to visualize the data on the map.  
+
 The goal of the competition was to predict the interest level of each rental housing unit as high, medium or low. The competition data consisted of several attributes about each such as the number of bedrooms, bathroomms, longitude, latitute and photos of the listings. 
 
 After using a random search through the hyper parameters for a GBM mode, my lowest log-loss on the public leaderboard was 0.742 and on the private leader board 0.733. The competition winners achieved a log loss of 0.492 on the private leader board. 
